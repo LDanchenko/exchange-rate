@@ -2,7 +2,8 @@ import { Icon } from '../Icon';
 
 import style from './Header.module.css';
 
-const Header = () => {
+const Header = ({ data }) => {
+  console.log(data);
   return (
     <header className={style.header}>
       <div className={style.container}>
@@ -22,9 +23,9 @@ const Header = () => {
                 marginRight: '4px',
               }}
             />
-            <p>USD/UAH</p>
+            <p>USD&#8226;UAH</p>
             <p>39.40</p>
-            <p> &#8226;</p>
+            <p> /</p>
             <p>39.95</p>
           </li>
           <li className={style.item}>
@@ -36,9 +37,9 @@ const Header = () => {
                 marginRight: '4px',
               }}
             />
-            <p>EUR/UAH</p>
+            <p>EUR&#8226;UAH</p>
             <p>39.40</p>
-            <p> &#8226;</p>
+            <p> /</p>
             <p>40.95</p>
           </li>
         </ul>
