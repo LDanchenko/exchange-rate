@@ -2,8 +2,7 @@ import { Icon } from '../Icon';
 
 import style from './Header.module.css';
 
-const Header = ({ data }) => {
-  console.log(data);
+const Header = () => {
   return (
     <header className={style.header}>
       <div className={style.container}>

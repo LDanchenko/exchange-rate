@@ -1,12 +1,19 @@
 import { Header } from 'Components/Header';
-import { useGetRateQuery } from './services/bank-api';
-
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getExchangeRate } from './services/store';
 import './App.css';
 
 function App() {
-  const { data, error, isLoading } = useGetRateQuery();
+  const dispatch = useDispatch();
+  const aaa = useSelector(state => state);
+  useEffect(() => {
+    dispatch(getExchangeRate());
+  }, []);
+  // console.log('loading ' + loading);
 
-  return !isLoading && <Header data={data} />;
+  console.log(aaa);
+  return <Header />;
 }
 
 export default App;
