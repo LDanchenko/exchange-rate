@@ -1,8 +1,7 @@
 import { Icon } from '../Icon';
-
 import style from './Header.module.css';
 
-const Header = () => {
+const Header = ({ USD = { buy: 0, sale: 0 }, EUR = { buy: 0, sale: 0 } }) => {
   return (
     <header className={style.header}>
       <div className={style.container}>
@@ -23,9 +22,9 @@ const Header = () => {
               }}
             />
             <p>USD&#8226;UAH</p>
-            <p>39.40</p>
+            <p> {parseFloat(USD.buy).toFixed(2)}</p>
             <p> /</p>
-            <p>39.95</p>
+            <p>{parseFloat(USD.sale).toFixed(2)}</p>
           </li>
           <li className={style.item}>
             <Icon
@@ -37,9 +36,9 @@ const Header = () => {
               }}
             />
             <p>EUR&#8226;UAH</p>
-            <p>39.40</p>
+            <p>{parseFloat(EUR.buy).toFixed(2)}</p>
             <p> /</p>
-            <p>40.95</p>
+            <p>{parseFloat(EUR.sale).toFixed(2)}</p>
           </li>
         </ul>
       </div>
