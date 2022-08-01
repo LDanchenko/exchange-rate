@@ -5,6 +5,7 @@ export const Backdrop = () => {
   return (
     <div className={style.backdrop}>
       <BeatLoader />
+      <></>
     </div>
   );
 };
