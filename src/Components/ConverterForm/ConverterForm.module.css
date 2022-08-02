@@ -49,16 +49,18 @@
 
 .wrapper {
   display: flex;
+  flex-direction: row;
 }
 
 .wrapper > *:not(:last-child) {
   margin-right: 15px;
-  width: 100%;
 }
 
 .wrapper > * {
   flex-basis: calc((100% / 5) - 15px);
+  width: 100%;
 }
 
-.button {
+.wrapper > .button {
+  width: max-content;
 }
