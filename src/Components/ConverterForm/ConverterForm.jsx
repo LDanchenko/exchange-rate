@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import styles from './ConverterForm.module.css';
+import { Icon } from '../Icon';
 
 export const ConverterForm = () => {
   return (
@@ -17,19 +18,33 @@ export const ConverterForm = () => {
         >
           <Form className={styles.form}>
             <h1 className={styles.title}>Currency converter</h1>
-            <Field type="email" name="email" placeholder="Email" />
-            <Field as="select" name="color">
-              <option value="red">USD</option>
-              <option value="green">EUR</option>
-              <option value="blue">UAH</option>
-            </Field>
-            <button>Convert</button>
-            <Field type="email" name="email" placeholder="Email" />
-            <Field as="select" name="color">
-              <option value="red">USD</option>
-              <option value="green">EUR</option>
-              <option value="blue">UAH</option>
-            </Field>
+            <div className={styles.wrapper}>
+              <Field
+                type="email"
+                name="email"
+                placeholder="1.00"
+                className={styles.input}
+              />
+              <Field as="select" name="color" className={styles.select}>
+                <option value="red">USD</option>
+                <option value="green">EUR</option>
+                <option value="blue">UAH</option>
+              </Field>
+              <button className={styles.button}>
+                <Icon name="usa" color="white" size="20" />
+              </button>
+              <Field
+                type="email"
+                name="email"
+                placeholder="0.00"
+                className={styles.input}
+              />
+              <Field as="select" name="color" className={styles.select}>
+                <option value="red">USD</option>
+                <option value="green">EUR</option>
+                <option value="blue">UAH</option>
+              </Field>
+            </div>
           </Form>
         </Formik>
       </div>

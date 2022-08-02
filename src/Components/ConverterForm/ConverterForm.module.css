@@ -14,4 +14,51 @@
 }
 
 .title {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #191970;
+}
+
+.input {
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  padding: 10px;
+  outline: none;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:focus {
+  border-color: #191970;
+}
+
+.select {
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  padding: 10px;
+  outline: none;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: white;
+}
+
+.select:focus {
+  border-color: #191970;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.wrapper > *:not(:last-child) {
+  margin-right: 15px;
+  width: 100%;
+}
+
+.wrapper > * {
+  flex-basis: calc((100% / 5) - 15px);
+}
+
+.button {
 }
