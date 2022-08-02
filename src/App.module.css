@@ -42,7 +42,7 @@
 }
 .backdropEnterActive {
   opacity: 1;
-  transition-property: opacity;
+  transition-property: opacity, visibility;
   transition-duration: 700ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -51,7 +51,9 @@
 }
 .backdropExitActive {
   opacity: 0;
-  transition-property: opacity;
+  pointer-events: none;
+  visibility: hidden;
+  transition-property: opacity, visibility;
   transition-duration: 700ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

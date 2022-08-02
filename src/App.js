@@ -2,8 +2,9 @@ import { Header } from 'Components/Header';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getExchangeRate } from './services/store';
-import { Backdrop } from 'Components/Backdrop';
 import { CSSTransition } from 'react-transition-group';
+import { Backdrop } from 'Components/Backdrop';
+import { ConverterForm } from 'Components/ConverterForm';
 import styles from './App.module.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           enterActive: styles.backdropEnterActive,
           exit: styles.backdropExit,
           exitActive: styles.backdropExitActive,
+          exitDone: styles.backdropExitDone,
         }}
         unmountOnExit
       >
@@ -32,6 +34,7 @@ function App() {
       </CSSTransition>
 
       <Header USD={USD} EUR={EUR} />
+      <ConverterForm />
     </>
   );
 }
