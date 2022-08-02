@@ -1,4 +1,5 @@
 import { Icon } from '../Icon';
+
 import style from './Header.module.css';
 
 const Header = ({ USD = { buy: 0, sale: 0 }, EUR = { buy: 0, sale: 0 } }) => {
