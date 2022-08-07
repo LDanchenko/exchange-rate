@@ -1,55 +1,78 @@
-import React from 'react';
-import { Field, Form, Formik } from 'formik';
+import { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './ConverterForm.module.css';
 import { Icon } from '../Icon';
+import { debounce, throttle } from 'lodash';
 
 export const ConverterForm = () => {
+  const exchange = useSelector(state => state.exchange);
+  console.log(exchange);
+  const formRef = useRef();
+
+  const [allValues, setAllValues] = useState({
+    inputValue: 1,
+    outputValue: 1,
+    inputCurrency: 'USD',
+    outputCurrency: 'UAH',
+  });
+  const changeHandler = e => {
+    setAllValues({ ...allValues, [e.target.name]: e.target.value });
+  };
+
+  const convert = () => {};
+
+  useEffect(() => {
+    console.log('inputValue: ' + allValues.inputValue);
+    console.log('outputValue: ' + allValues.outputValue);
+    console.log('inputCurrency: ' + allValues.inputCurrency);
+    console.log('outputCurrency: ' + allValues.outputCurrency);
+  }, [allValues]);
+
+  const handleChange = evt => {
+    console.log(evt.target.name);
+  };
+
   return (
     <main>
       <div className={styles.container}>
-        <Formik
-          initialValues={{ email: '', color: 'USD' }}
-          // onSubmit={(values, actions) => {
-          //   setTimeout(() => {
-          //     alert(JSON.stringify(values, null, 2));
-          //     actions.setSubmitting(false);
-          //   }, 1000);
-          // }}
+        <form
+          ref={formRef}
+          className={styles.form}
+          onChange={e => changeHandler(e)}
         >
-          <Form className={styles.form}>
-            <h1 className={styles.title}>Currency converter</h1>
-            <div className={styles.wrapper}>
-              <Field
-                type="email"
-                name="email"
-                placeholder="1.00"
-                className={styles.input}
-              />
-              <Field as="select" name="color" className={styles.select}>
-                <option value="red">USD</option>
-                <option value="green">EUR</option>
-                <option value="blue">UAH</option>
-              </Field>
-              <button className={styles.button}>
-                <Icon name="usa" color="white" size="20" />
-              </button>
-              <Field
-                type="email"
-                name="email"
-                placeholder="0.00"
-                className={styles.input}
-              />
-              <Field as="select" name="color" className={styles.select}>
-                <option value="red">USD</option>
-                <option value="green">EUR</option>
-                <option value="blue">UAH</option>
-              </Field>
-            </div>
-          </Form>
-        </Formik>
+          <h1 className={styles.title}>Currency converter</h1>
+          <div className={styles.wrapper}>
+            <input
+              type="text"
+              name="inputValue"
+              className={styles.input}
+              value={allValues.inputValue}
+
+              // validate={debounce(value => validateInput(value), 300)}
+            />
+
+            <select name="inputCurrency" className={styles.select}>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="UAH">UAH</option>
+            </select>
+            <span>
+              <Icon name="arrows" color="black" size="30" />
+            </span>
+            <input
+              type="text"
+              name="outputValue"
+              value={allValues.outputValue}
+              className={styles.input}
+            />
+            <select name="outputCurrency" className={styles.select}>
+              <option value="UAH">UAH</option>
+              <option value="EUR">EUR</option>
+              <option value="USD">USD</option>
+            </select>
+          </div>
+        </form>
       </div>
     </main>
-    // <div className={styles.container}>
-    //   <form onSubmit={formik.handleSubmit} className={styles.form}>
   );
 };

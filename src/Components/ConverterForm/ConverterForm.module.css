@@ -1,6 +1,7 @@
 .container {
   height: 100vh;
   position: relative;
+  margin-top: 80px;
 }
 
 .form {
@@ -8,7 +9,7 @@
   padding: 20px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -70%);
+  transform: translate(-50%, -50%);
   border-radius: 8px;
   box-shadow: rgb(35 55 80 / 30%) 0px 6px 12px;
 }
@@ -50,14 +51,16 @@
 .wrapper {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .wrapper > *:not(:last-child) {
   margin-right: 15px;
 }
 
-.wrapper > * {
-  flex-basis: calc((100% / 5) - 15px);
+.wrapper > .input,
+.select {
+  flex-basis: calc((100% / 4) - 15px);
   width: 100%;
 }
 
