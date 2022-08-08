@@ -10,8 +10,8 @@ import styles from './App.module.css';
 function App() {
   const dispatch = useDispatch();
   const { loading, exchange } = useSelector(state => state);
-  const USD = exchange.find(currency => currency.ccy === 'USD');
-  const EUR = exchange.find(currency => currency.ccy === 'EUR');
+  const USD = exchange.USDUAH;
+  const EUR = exchange.EURUAH;
   useEffect(() => {
     dispatch(getExchangeRate());
     // eslint-disable-next-line
