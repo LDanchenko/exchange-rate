@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './ConverterForm.module.css';
 import { Icon } from '../Icon';
-import { debounce, throttle } from 'lodash';
 
 export const ConverterForm = () => {
   const exchange = useSelector(state => state.exchange);
@@ -10,6 +9,7 @@ export const ConverterForm = () => {
     elementDom: '',
     changed: true,
   });
+  const [lastInput, setInputElement] = useState('');
   const mounted = useRef(true);
   const [allValues, setAllValues] = useState({
     inputValue: 1,
@@ -19,15 +19,11 @@ export const ConverterForm = () => {
   });
 
   const convertInput = () => {
-    console.log('inputValue: ' + allValues.inputValue);
-    console.log('inputCurrency: ' + allValues.inputCurrency);
     const { inputValue, inputCurrency, outputCurrency } = allValues;
-    console.log(exchange);
     let course = 1;
     if (inputCurrency !== outputCurrency) {
-      course = exchange[inputCurrency + outputCurrency]; // вынесешь наверз //не толкьо гривны
+      course = exchange[inputCurrency + outputCurrency];
     }
-    console.log(course);
     setAllValues({
       ...allValues,
       outputValue: (course * inputValue).toFixed(3),
@@ -35,15 +31,11 @@ export const ConverterForm = () => {
   };
 
   const convertOutput = () => {
-    console.log('outputValue: ' + allValues.outputValue);
-    console.log('outputCurrency: ' + allValues.outputCurrency);
     const { inputCurrency, outputCurrency, outputValue } = allValues;
-    console.log(exchange);
     let course = 1;
     if (inputCurrency !== outputCurrency) {
-      course = exchange[inputCurrency + outputCurrency]; // вынесешь наверз //не толкьо гривны
+      course = exchange[inputCurrency + outputCurrency];
     }
-    console.log(course);
     setAllValues({
       ...allValues,
       inputValue: (outputValue / course).toFixed(3),
@@ -53,7 +45,9 @@ export const ConverterForm = () => {
   const handleInput = e => {
     setAllValues({ ...allValues, [e.target.name]: e.target.value });
     setElement({ elementDom: e.target.name, changed: !element.changed });
-    console.log('inut');
+    if (e.target.tagName === 'INPUT') {
+      setInputElement(e.target.name);
+    }
   };
 
   useEffect(() => {
@@ -61,8 +55,8 @@ export const ConverterForm = () => {
       mounted.current = false;
       return;
     }
-    element.elementDom.includes('input') ? convertInput() : convertOutput();
-    console.log(element);
+    lastInput.includes('input') ? convertInput() : convertOutput();
+    // eslint-disable-next-line
   }, [element.changed]);
 
   return (
@@ -77,7 +71,6 @@ export const ConverterForm = () => {
               className={styles.input}
               value={allValues.inputValue}
               onChange={e => handleInput(e)}
-              // validate={debounce(value => validateInput(value), 300)}
             />
 
             <select
