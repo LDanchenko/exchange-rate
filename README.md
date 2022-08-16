@@ -1,1 +1,1 @@
-React, Redux toolkit, Axios, CSSTransition, Formik, Lodash
+React, Redux toolkit, Axios, Lodash, React Transition Group
